@@ -852,7 +852,7 @@ class NetworkBackground {
     createNodes() {
         this.nodes = [];
         const area = this.canvas.width * this.canvas.height;
-        const nodeCount = Math.min(70, Math.floor(area / 1500));
+        const nodeCount = Math.min(70, Math.floor(area / 15000));
         
         for (let i = 0; i < nodeCount; i++) {
             this.nodes.push({
