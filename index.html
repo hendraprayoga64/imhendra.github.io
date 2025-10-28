@@ -867,16 +867,51 @@ class NetworkBackground {
         }
     }
     
-    getRandomColor() {
-        const colors = [
-            'rgba(0, 119, 204, 0.7)',    // Blue
-            'rgba(0, 153, 255, 0.7)',    // Light Blue
-            'rgba(51, 170, 255, 0.7)',   // Sky Blue
-            'rgba(0, 102, 204, 0.7)',    // Dark Blue
-            'rgba(77, 148, 255, 0.7)'    // Azure
-        ];
-        return colors[Math.floor(Math.random() * colors.length)];
-    }
+	getRandomColor() {
+    // Warna akan berubah secara periodik berdasarkan waktu
+    const time = Date.now() * 0.001; // Convert ke seconds
+    
+    const colorSets = [
+        // Set 1: Blues
+        [
+            'rgba(0, 119, 204, 0.7)',
+            'rgba(0, 153, 255, 0.7)', 
+            'rgba(51, 170, 255, 0.7)',
+            'rgba(0, 102, 204, 0.7)',
+            'rgba(77, 148, 255, 0.7)'
+        ],
+        // Set 2: Purples
+        [
+            'rgba(138, 43, 226, 0.7)',
+            'rgba(147, 112, 219, 0.7)',
+            'rgba(186, 85, 211, 0.7)',
+            'rgba(153, 50, 204, 0.7)',
+            'rgba(128, 0, 128, 0.7)'
+        ],
+        // Set 3: Greens
+        [
+            'rgba(46, 139, 87, 0.7)',
+            'rgba(50, 205, 50, 0.7)',
+            'rgba(0, 255, 127, 0.7)',
+            'rgba(32, 178, 170, 0.7)',
+            'rgba(0, 250, 154, 0.7)'
+        ],
+        // Set 4: Oranges
+        [
+            'rgba(255, 140, 0, 0.7)',
+            'rgba(255, 165, 0, 0.7)',
+            'rgba(255, 69, 0, 0.7)',
+            'rgba(255, 99, 71, 0.7)',
+            'rgba(255, 127, 80, 0.7)'
+        ]
+    ];
+    
+    // Ganti color set setiap 10 detik
+    const setIndex = Math.floor(time / 10) % colorSets.length;
+    const currentSet = colorSets[setIndex];
+    
+    return currentSet[Math.floor(Math.random() * currentSet.length)];
+}
     
     handleMouseMove(e) {
         const rect = this.canvas.getBoundingClientRect();
